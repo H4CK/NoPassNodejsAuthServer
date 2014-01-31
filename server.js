@@ -48,19 +48,17 @@ var server = http.createServer(function (req,res){
     }
     }
 /*-------------------------SERVER CODE END-----------------------------*/
-/*-------------------------MYSQL CODE START-----------------------------*/
 
 
 
 
+/*
 var mysqlconn=mysql.createConnection({
     host:'localhost',
     port:3306,
     database:'k14hack',
     user:'root',
-    //password:'aravindh'
-    //password:'root'
-    password:'123456',
+    password:'aravindh',
     socketPath  : '/var/run/mysqld/mysqld.sock'
 });
 mysqlconn.connect(function(err){
@@ -71,7 +69,7 @@ mysqlconn.connect(function(err){
 });
 
 
-/*--------------------------------MYSQL INSERT AND SELECT START----------*/
+
 var id=977986,
     email='arparthasarathi@gmail.com',
     publickey='ygjjhsgdhchsbdkvksjhhvkjsnvkjsh',
@@ -102,11 +100,9 @@ mysqlconn.query("SELECT * FROM test_table", function (error, results, fields) {
         console.log(results);
     }
 });
-/*--------------------------------MYSQL INSERT AND SELECT END----------*/
-/*-------------------------MYSQL CODE END-----------------------------*/
 
 
-
+*/
 
 });
 server.listen(8080);                                                    //STARTING NODE SERVER
