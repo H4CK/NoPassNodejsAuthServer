@@ -69,10 +69,10 @@ mysqlconn.connect(function(err){
 });
 
 
-/*--------------------------------MYSQL INSERT AND SELECT START----------*/
+/*--------------------------------MYSQL INSERT AND SELECT START---------*/
 
 
-});
+
 
 
 mysqlconn.query("SELECT * FROM test_table", function (error, results, fields) {
@@ -97,14 +97,3 @@ function  getData(res,url_parts){
  console.log("Data submitted by the user name:"+url_parts.query.name+" and age:"+url_parts.query.age);
         res.end("Data submitted by the user name:"+url_parts.query.name+" and age:"+url_parts.query.age);
 }
-function inserdata()
-{
-    
-    console.log("time check");
-    mysqlconn.query('INSERT INTO test_table (Name) VALUES ("'+post.Name+'")', function(error, result) {
-if(error){
-    console.log(error)
-}}
-
-
-
