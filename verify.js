@@ -1,0 +1,1 @@
+var cryptico=require('jquery.js');
