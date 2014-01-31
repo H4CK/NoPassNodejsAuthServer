@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Check form</title>
-<script type="text/javascript">
 
+<title>Check form</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready()
+{
+  console.log("hello");
+}
+function valform(){
+
+    var formdata = {
+      'username' : $('#name').val(),
+      'age' : $('#age').val()
+    }
+
+      console.log(formdata);
+
+    if(formdata['username'] == "" || formdata['age'] == "")
+    {
+      
+      console.log("empty data");
+    }
+    else
+    {
+      console.log("else");
+      $.ajax ({
+        type: "POST",
+        url: "getData", 
+        data: formdata,   
+        cache: false,
+        success: function (data) {
+          console.log("in sc");
+          trapdata = $.parseJSON(data);
+          console.log(trapdata);
+          if($.trim(trapdata.status) == 1)
+          {
+            console.log('Status 200');
+            
+          }
+          else if($.trim(trapdata.status) == 2)
+          {
+            
+            console.log('Invalid');
+          }
+          else
+          {
+            console.log('Status 401');  
+          }
+              
+          console.log("Edit Category Form Intiated");
+        },    
+        error: function() {
+          console.log("Edit Category Form Failed");
+        }
+      });
+    }
+  }
 </script>
 </head>
 
 <body>
-<form id="form1" name="form1" method="post" action="getData">
+<form id="form1" name="form1" method="POST">
   <p>
   <label><label>Please Fill up the form and submit.<br />
   </label>Name
@@ -22,9 +76,10 @@
   </p>
   <p>
     <label>
-      <input type="submit" name="submit" id="submit" value="Submit" />
+      <input type="button" name="submit" id="check" value="Submit" onclick="valform()"/>
     </label>
   </p>
 </form>
+
 </body>
 </html>

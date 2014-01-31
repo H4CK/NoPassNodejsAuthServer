@@ -1,4 +1,3 @@
-
 var http = require('http'),
     util = require('util'),
     fs = require('fs'),
@@ -21,9 +20,12 @@ var server = http.createServer(function (req,res){
         req.on('end', function () {
 
             var POST = qs.parse(body);
-            // use POST
-            res.end("Sent data are name:"+POST.name+" age:"+POST.age);
-
+            console.log(POST);
+            var onj={status:'1'};
+            console.log('1');
+            console.log(JSON.stringify(onj));
+            res.end(JSON.stringify(onj));
+            
         });
         
        

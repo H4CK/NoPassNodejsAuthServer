@@ -1,0 +1,7 @@
+$.ajax({
+          type: "POST",
+          url: "/getdata",
+          dataType: "json"
+        }).done (function (data) {
+          alert(data);
+        });
