@@ -58,7 +58,9 @@ var mysqlconn=mysql.createConnection({
     port:3306,
     database:'k14hack',
     user:'root',
-    password:'aravindh',
+    //password:'aravindh'
+    //password:'root'
+    password:'123456',
     socketPath  : '/var/run/mysqld/mysqld.sock'
 });
 mysqlconn.connect(function(err){
