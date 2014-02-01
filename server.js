@@ -180,33 +180,41 @@ var server = http.createServer(function (req,res){
             body += data;
             console.log('got data:'+data);
         });
-        if(url_parts.pathname == '/getData')
+        if(url_parts.pathname == '/authenticate')
         req.on('end', function () {
             var rsg='jyyhgjhgfgghfhgvjnhgjhdg';
             var POST = qs.parse(body);              //Extracting data
             console.log(POST); 
 
             ////////////////////////////////////////////////
-           // var encryptedMessage = encrypt(rsg, POST.age);    
-            console.log(encryption(rsg,POST.pub));                 
+           var encryptedMessage = encryption(rsg, POST.publicKey);    
+            console.log(encryption(rsg,POST.publicKey));                 
             var onj={status:'1'};                   //node object
-            console.log(JSON.stringify(onj));
-            res.end(JSON.stringify(onj));           //Returning as json
+            console.log(JSON.stringify(encryptedMessage));
+            res.end(JSON.stringify(encryptedMessage));           //Returning as json
             
         });
 
-       else
+       else if(url_parts.pathname =='/isAuthenticated')
        {
-        var POST=qs.parse(body);
-        mysqlconn.query("SELECT * FROM test_table where email = ?", function (error, results, fields) {
-        if (error) {
-        //
-        }
+     var POST=qs.parse(body);
+     mysqlconn.query("SELECT * FROM test_table where email = ?, publickey = ? , message = ?", POST.email, POST.publicKey, POST.decryptedMessage,function (error, results, fields) {
+     if (error) {
+        console.log(error);
+       }
+    
     if (results.length  > 0) {
         console.log(results);
+        res.end('1');
     }
-});         
-        console.log(POST);
+    else
+    {
+        console.log("Not Authenticated");
+        res.end('0');
+    }
+    });         
+        
+        
        }
 
         
